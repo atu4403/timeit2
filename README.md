@@ -1,4 +1,5 @@
-# timeit2 <!-- TODO: badge -->
+# timeit2 
+
 
 このパッケージは処理時間の計測module [timeit](https://docs.python.org/3/library/timeit.html) を使いやすくしたものです。以下の特徴があります。
 
@@ -6,6 +7,8 @@
 - 複数の関数を1度に計測して相対的な速度差を視覚化できます
 - 処理時間の桁数を変えられます(0.00374567より0.0037の方が見やすい)
 - 返り値を一緒にprintできます
+
+![test](https://github.com/atu4403/timeit2/workflows/test/badge.svg)
 
 
 ## Install
