@@ -1,5 +1,4 @@
 import time
-import statistics
 import copy
 from typing import Callable
 
@@ -36,20 +35,17 @@ def ti2(
             fres["results"].append(f(*_args))
             fres["times"].append(time.perf_counter() - start)
         t = fres["times"]
-        fres["mean"] = statistics.mean(t)
+        fres["fast"] = min(t)
         times.append(
             (
                 fres["name"],
-                fres["mean"],
+                fres["fast"],
             )
         )
-        print(f"{fres['name']}:\n\t{fres['mean']:.{floor}f} sec")
+        print(f"{fres['name']}:\n\t{fres['fast']:.{floor}f} sec")
         if print_return:
             r = fres["results"][0]
-            if type(r) is float:
-                print(f"\t{return_label}{statistics.mean(fres['results'])}")
-            else:
-                print(f"\t{return_label}{fres['results'][0]}")
+            print(f"\t{return_label}{fres['results'][0]}")
     if relative:
         times.sort(key=lambda x: x[1])
         first = True
