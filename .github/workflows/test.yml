@@ -19,7 +19,9 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - uses: atu4403/poetry-setup-multi-platform@v1
+      - uses: abatilo/actions-poetry@v2.0.0
+        with:
+          poetry-version: 1.0
       - run: |
           poetry install
           poetry run pytest
