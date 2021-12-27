@@ -53,13 +53,7 @@ def test_number(mocker):
 
 
 def test_alias(mocker):
-    mocker.patch("builtins.print")
-    assert (
-        ti(fn2, args=[1], number=3)
-        == ti2(fn2, args=[1], number=3)
-        == timeit(fn2, args=[1], number=3)
-        == timeit2(fn2, args=[1], number=3)
-    )
+    assert ti == ti2 == timeit == timeit2
 
 
 def test_return(mocker):
