@@ -1,3 +1,5 @@
+from pytest import approx
+import types
 from timeit2 import ti2, ti, timeit, timeit2
 
 
@@ -51,7 +53,13 @@ def test_number(mocker):
 
 
 def test_alias(mocker):
+    assert ti == ti2 == timeit == timeit2
+
+
+def test_return(mocker):
     mocker.patch("builtins.print")
-    ti(fn2, args=[1], number=3) == ti2(fn2, args=[1], number=3) == timeit(
-        fn2, args=[1], number=3
-    ) == timeit2(fn2, args=[1], number=3)
+    result = ti2(fn1, fn2, fn3, args=[1])
+    assert type(result) == list
+    for tup in result:
+        assert tup[0] in ["fn1", "fn2", "fn3"]
+        assert type(tup[1]) == float
